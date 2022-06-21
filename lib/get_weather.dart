@@ -80,7 +80,7 @@ class _GetWeatherScreenState extends State<GetWeatherScreen> {
     return tempInString;
   }
 
-  Future<void> getweatherDataFromCityName(String cityName) async {
+  void getweatherDataFromCityName(String cityName) async {
     var cityWeatherAPI = "api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}";
     var url = Uri.https("api.openweathermap.org", "/data/2.5weather",{'q': cityName , 'appid': apikey});
     print(url);
@@ -119,7 +119,7 @@ class _GetWeatherScreenState extends State<GetWeatherScreen> {
     setState(() {
       var temp = weatherData['main']['temp'];
       tempInCel = kelvinToCel(temp);
-      currentWeather = weatherData['weather']['0']['main'];
+      currentWeather = weatherData['weather'][0]['main'];
       cityName = weatherData['name'];
     });
 
