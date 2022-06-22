@@ -51,8 +51,15 @@ class _GetWeatherScreenState extends State<GetWeatherScreen> {
                     icon: Icon(Icons.near_me, color: Colors.white, size: 40,),
                   ),
                   Spacer(),
-                  IconButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => locationCity()));
+                  IconButton(onPressed: () async{
+                    var cityName = await Navigator.push(context, MaterialPageRoute(builder: (_) => locationCity()));
+                    print(cityName);
+                    if(cityName != Null  || cityName != ""){
+                      var weatherData = getweatherDataFromCityName(cityName);
+                      setState(() {
+                        updateUI(widget.weatherData);
+                      });
+                    }
                   },
                     icon: Icon(Icons.location_on, color: Colors.white, size: 40,),
                   ),
